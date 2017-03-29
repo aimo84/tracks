@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Discourse</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+<meta name="generator" content="Discourse 1.8.0.beta6 - https://github.com/discourse/discourse version ad6cb3c638bfaf435641f3a0d7f8d60fb2b50acf">
+<link rel="icon" type="image/png" href="/images/default-favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/images/default-apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<script type="application/ld+json">{"@context":"http://schema.org","@type":"WebSite","url":"http://localhost","potentialAction":{"@type":"SearchAction","target":"http://localhost/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<link rel="search" type="application/opensearchdescription+xml" href="http://localhost/opensearch.xml" title="Discourse Search">
+
+  
+
+<style>
+  @font-face {
+    font-family: 'FontAwesome';
+    src: url('/assets/fontawesome-webfont-ff82aeed6b9bb6701696c84d1b223d2e682eb78c89117a438ce6cfea8c498995.woff2?http://discourse-jwyoung.c9users.io:8080&amp;2&v=4.5.0') format('woff2'),
+         url('/assets/fontawesome-webfont-c812ddc9e475d3e65d68a6b3b589ce598a2a5babb7afc55477d59215c4a38a40.woff?http://discourse-jwyoung.c9users.io:8080&amp;2&v=4.5.0') format('woff');
+  }
+</style>
+
+    <link href="/stylesheets/desktop.css?body=1" media="all" rel="stylesheet" />
+
+
+  
+
+  
+
+      
+  
+</head>
+<body >
+    
+  <section id='main'>
+    <header class="d-header">
+  <div class="wrap">
+    <div class="contents">
+      <div class="row">
+        <div class="title span13">
+          <a href="/">
+              <img src="/images/d-logo-sketch.png" alt="Discourse" id="site-logo">
+          </a>
+        </div>
+            <div class='panel clearfix'>
+              <a href="/login" class='btn btn-primary btn-small login-button'><i class="fa fa-user"></i> Log In</a>
+            </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+    <div id="main-outlet" class="wrap not-found-container">
+      
+<h1 class="page-not-found">Oops! That page doesn’t exist or is private.</h1>
+
+<div class="row page-not-found-topics">
+  <div class="span8 popular-topics">
+    <h2 class="popular-topics-title">Popular</h2>
+    <br/>
+    <a href="/latest" class="btn">More&hellip;</a>
+  </div>
+  <div class="span8 recent-topics">
+    <h2 class="recent-topics-title">Recent</h2>
+      <div class='not-found-topic'>
+        <a href="/t/scrapy-crawl-crawlpy-loglevel-info-a-config-path-to-crawlpy-config-json-o-urls-json-t-json-sa/1104">Scrapy crawl crawlpy --loglevel=INFO -a config=/path/to/crawlpy.config.json -o urls.json -t json # sa</a><a class='badge-wrapper  bullet' href='/c/category63'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category63</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/find-all-planned-features-and-their-stati-here/1103">Find all planned features and their stati here</a><a class='badge-wrapper  bullet' href='/c/category80'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category80</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/article-is-created/1102">Article is created</a><a class='badge-wrapper  bullet' href='/c/category23'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category23</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/new-title-is-crated/1101">New title is crated</a><a class='badge-wrapper  bullet' href='/c/category23'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category23</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/down-down-down-i-think-i-could-if-i-only-know-h/1100">Down, down, down.
+I think I could, if I only know h</a><a class='badge-wrapper  bullet' href='/c/category58'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category58</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/which-was-very-likely-true-oh-how-i-wish-i-coul/1099">&#39; Which was very likely true.
+Oh, how I wish I coul</a><a class='badge-wrapper  bullet' href='/c/category26'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category26</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/i-wonder-if-i-shall-see-it-pop-down-a-jar-from-one/1098">&#39;I wonder if I shall see it pop down a jar from one</a><a class='badge-wrapper  bullet' href='/c/category53'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category53</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/the-rabbit-hole-went-straight-on-like-a-tunnel-for/1097">The rabbit-hole went straight on like a tunnel for</a><a class='badge-wrapper  bullet' href='/c/category67'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category67</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/there-was-nothing-else-to-do-so-alice-soon-began-t/1096">There was nothing else to do, so Alice soon began t</a><a class='badge-wrapper  bullet' href='/c/category65'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category65</span></a>
+      </div>
+      <div class='not-found-topic'>
+        <a href="/t/do-cats-eat-bats-when-she-thought-it-over-yes/1095">Do cats eat bats?
+&#39; when she thought it over &#39;--yes</a><a class='badge-wrapper  bullet' href='/c/category14'><span class='badge-category-bg' style='background-color: #000000;'></span><span style='color: #ffffff;' data-drop-close='true' class='badge-category clear-badge'
+                 >category14</span></a>
+      </div>
+    <br/>
+    <a href="/latest" class="btn">More&hellip;</a>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="span10 page-not-found-search">
+      <h2>Search this site</h2>
+      <p>
+        <form action='//google.com/search' id='google-search' onsubmit="return google_button_clicked()">
+          <input type="text" id='user-query' value="">
+          <input type='hidden' id='google-query' name="q">
+          <button class="btn btn-primary">Google</button>
+        </form>
+      </p>
+    </div>
+  </div>
+
+  <script language="Javascript">
+    function google_button_clicked(e) {
+      var searchValue = document.getElementById('user-query').value;
+      document.getElementById('google-query').value = 'site:http://discourse-jwyoung.c9users.io:8080 ' + searchValue;
+      return true;
+    }
+
+    window.onpopstate = function(event) {
+      if (event.state && !window.hasOwnProperty("Discourse")) {  //check if Discourse object exists if not take care of back navigation
+        window.location = document.location;
+      }
+    };
+  </script>
+
+    </div>
+  </section>
+    
+</body>
+</html>

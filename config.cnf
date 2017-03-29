@@ -1,0 +1,6 @@
+[mysqld]
+innodb_buffer_pool_size= 1G
+innodb_buffer_pool_instances= 64
+innodb_old_blocks_pct= 500
+innodb_random_read_ahead= 1
+innodb_read_ahead_threshold= 64

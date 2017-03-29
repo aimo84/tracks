@@ -1,0 +1,1195 @@
+=> Booting Thin
+=> Rails 4.1.14.1 application starting in development on http://0.0.0.0:8080
+=> Run `rails server -h` for more startup options
+=> Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+=> Ctrl-C to shutdown server
+Thin web server (v1.6.3 codename Protein Powder)
+Maximum connections set to 1024
+Listening on 0.0.0.0:8080, CTRL+C to stop
+
+
+Started GET "/" for 10.240.0.206 at 2017-03-29 01:51:35 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TodosController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`remember_token` = '11fdc1d68ebf726572eb530a0756ea11b735840f'  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE `users` SET `remember_token_expires_at` = '2017-04-12 01:51:36' WHERE `users`.`id` = 1
+  [1m[36m (4.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mPreference Load (0.4ms)[0m  SELECT  `preferences`.* FROM `preferences`  WHERE `preferences`.`user_id` = 1 LIMIT 1
+  [1m[36mTodo Load (0.6ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (state = 'deferred') AND (show_from <= '2017-03-29 01:51:36')  ORDER BY show_from ASC, todos.created_at DESC[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`project_id`
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`project_id`[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`context_id`
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`context_id`[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))
+  [1m[36mTodo Load (1.0ms)[0m  [1mSELECT `todos`.* FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))  ORDER BY todos.due IS NULL, todos.due ASC, todos.created_at ASC[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (156, 48, 152, 113, 280, 341, 365, 180, 305, 435, 436, 429, 321, 351, 432, 67, 454, 272, 77, 125, 408, 355, 128, 388, 186, 167, 346, 413, 201, 195, 308, 70, 348, 417, 335, 342, 259, 64, 392, 324, 91, 107, 147, 121, 414, 352, 278, 55, 22, 340, 83, 360, 336, 54, 290, 15, 197, 427, 122, 382, 401, 75, 279, 104, 332, 270, 171, 261, 258, 310, 354, 339, 8, 266, 127, 159, 405, 192, 175, 331, 196, 84, 257, 397, 409, 137, 378, 9, 315, 269, 296, 273, 118, 37, 112, 316, 303, 314, 385, 358, 329, 63, 423, 27, 312, 94, 129, 130, 106, 151, 68, 333, 393, 24, 114, 361, 52, 424, 18, 419, 407, 193, 61, 103, 16, 47, 370, 50, 62, 26, 74, 169, 123, 445, 134, 390, 268, 191, 5, 41, 97, 120, 149, 380, 262, 431, 109, 277, 452, 144, 297, 29, 441, 126, 89, 23, 403, 411, 307, 292, 96, 448, 356, 328, 363, 132, 199, 362, 20, 65, 40, 286, 446, 449, 284, 157, 95, 434, 87, 80, 443, 387, 264, 35, 12, 347, 338, 188, 190, 153, 313, 131, 294, 161, 166, 327, 142, 69, 287, 38, 263, 116, 45, 260, 11, 302, 422, 343, 119, 288, 440, 304, 274, 450, 344, 7, 101, 359, 447, 25, 265, 98, 350, 311, 353, 456, 78, 14, 404, 189, 184, 148, 379, 183, 79, 177, 364, 57, 51, 421, 36, 317, 319, 291, 451, 200, 176, 73, 433, 6, 133, 395, 21, 66, 337, 298, 1, 396, 357, 71, 13, 369, 430, 31, 415, 300, 44, 138, 30, 194, 165, 76, 43, 271, 154, 39, 374, 85, 389, 53, 381, 276, 115, 182, 46, 442, 139, 366, 283, 178, 299, 376, 164, 33, 285, 179, 110, 172, 281, 3, 406, 59, 371, 93, 330, 275, 145, 373, 187, 325, 349, 383, 399, 158, 155, 34, 293, 426, 181, 377, 102, 418, 368, 2, 185, 32, 88, 455, 391, 437, 124, 60, 416, 143, 400, 108, 402, 301, 384655, 384656, 384657, 1348, 1541)
+  [1m[36mContext Load (0.2ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (58, 107, 162, 163, 380, 109, 446, 147, 160, 295, 266, 289, 346, 424, 431, 73, 367, 287, 348, 355, 31, 189, 337, 404, 271, 297, 435, 89, 316, 320, 369, 183, 267, 397, 25, 95, 309, 390, 36, 92, 88, 268, 7, 10, 21, 82, 274, 275, 312, 352, 364, 400, 441, 54, 101, 376, 411, 23, 41, 188, 198, 97, 129, 262, 428, 159, 307, 407, 19, 186, 298, 351, 145, 334, 66, 81, 136, 386, 74, 260, 294, 453, 44, 85, 342, 269, 290, 442, 87, 171, 415, 130, 440, 63, 152, 196, 72, 131, 71, 191, 76, 91, 197, 292, 416, 67, 339, 426, 261, 277, 387, 394, 420, 119, 142, 315, 16, 154, 117, 165, 99, 296, 443, 144, 445, 37, 302, 127, 405, 90, 360, 166, 173, 264, 345, 395, 62, 388, 40, 321, 437, 317, 382, 148, 389, 412, 98, 106, 417, 13, 110, 311, 421, 451, 123, 187, 60, 423, 32, 161, 354, 68, 64, 126, 365, 419, 39, 306, 105, 403, 111, 141, 49, 28, 78, 84, 413, 303, 340, 174, 122, 270, 429, 293, 33, 20, 201, 393, 363, 299, 113, 128, 176, 368, 52, 77, 150, 327, 357, 138, 373, 48, 116, 310, 30, 156, 182, 343, 121, 361, 65, 11, 341, 190, 374, 318, 143, 335, 408, 149, 319, 280, 305, 438, 375, 427, 12, 344, 324, 259, 430, 402, 177, 286, 398, 323, 172, 285, 391, 414, 47, 175, 444, 43, 18, 115, 304, 9, 137, 168, 336, 157, 284, 93, 378, 56, 120, 379, 53, 86, 385, 350, 370, 377, 151, 57, 70, 80, 356, 133, 118, 146, 134, 265, 279, 450, 50, 184, 332, 418, 409, 353, 272, 108, 124, 51, 112, 338, 194, 195, 103, 282, 401, 452, 59, 349, 179, 366, 258, 158, 8, 75, 257, 425, 300, 139, 26, 301, 153, 449, 55, 42, 281, 34, 61, 193, 291, 381, 164, 371, 96, 114, 308, 325, 24, 83, 448, 455, 333, 135, 1)[0m
+  [1m[35mTagging Load (0.3ms)[0m  SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 3, 4, 2, 300009, 300010)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)[0m
+  [1m[35mRecurringTodo Load (0.2ms)[0m  SELECT `recurring_todos`.* FROM `recurring_todos`  WHERE `recurring_todos`.`id` IN (20, 384906)
+  [1m[36mContext Load (0.3ms)[0m  [1mSELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 50[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385422[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385423[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.8ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385425[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385424[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385420
+  Rendered todos/_todo.html.erb (171.1ms)
+  Rendered todos/_collection.html.erb (177.3ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.6ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.4ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.5ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.5ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 596
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 381
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 936
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 542
+  Rendered todos/_todo.html.erb (82.6ms)
+  Rendered todos/_collection.html.erb (84.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 911
+  Rendered todos/_todo.html.erb (16.1ms)
+  Rendered todos/_collection.html.erb (18.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 963
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 273
+  Rendered todos/_todo.html.erb (50.7ms)
+  Rendered todos/_collection.html.erb (52.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 128
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 388
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 267
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 957
+  Rendered todos/_todo.html.erb (100.5ms)
+  Rendered todos/_collection.html.erb (103.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 928
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 404
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 35
+  Rendered todos/_todo.html.erb (74.8ms)
+  Rendered todos/_collection.html.erb (77.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 857
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 524
+  Rendered todos/_todo.html.erb (77.1ms)
+  Rendered todos/_collection.html.erb (80.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (1.0ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 814
+  Rendered todos/_todo.html.erb (32.4ms)
+  Rendered todos/_collection.html.erb (34.5ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (2.2ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 960
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 576
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 120
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 953
+  Rendered todos/_todo.html.erb (81.9ms)
+  Rendered todos/_collection.html.erb (83.6ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (2.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 555
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 702
+  Rendered todos/_todo.html.erb (34.9ms)
+  Rendered todos/_collection.html.erb (36.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 611
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 109
+  Rendered todos/_todo.html.erb (27.3ms)
+  Rendered todos/_collection.html.erb (29.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 883
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 80
+  Rendered todos/_todo.html.erb (35.2ms)
+  Rendered todos/_collection.html.erb (37.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 197
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.4ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 531
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 261
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 326
+  Rendered todos/_todo.html.erb (77.7ms)
+  Rendered todos/_collection.html.erb (80.0ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (2.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTodo Exists (0.5ms)[0m  SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820 LIMIT 1
+  [1m[36mTodo Load (0.4ms)[0m  [1mSELECT `todos`.* FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820[0m
+  [1m[35mTodo Exists (0.5ms)[0m  SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 909 LIMIT 1
+  Rendered todos/_successor.html.erb (5.6ms)
+  Rendered todos/_successor.html.erb (14.6ms)
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 85[0m
+  Rendered todos/_todo.html.erb (31.9ms)
+  Rendered todos/_collection.html.erb (33.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 427[0m
+  Rendered todos/_todo.html.erb (23.1ms)
+  Rendered todos/_collection.html.erb (25.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 380[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 165[0m
+  Rendered todos/_todo.html.erb (31.4ms)
+  Rendered todos/_collection.html.erb (32.9ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 64[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 291[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 865[0m
+  Rendered todos/_todo.html.erb (47.5ms)
+  Rendered todos/_collection.html.erb (49.0ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (2.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 637[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 896[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 625[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 804[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 127[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 856[0m
+  Rendered todos/_todo.html.erb (89.1ms)
+  Rendered todos/_collection.html.erb (90.7ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 885[0m
+  Rendered todos/_todo.html.erb (16.0ms)
+  Rendered todos/_collection.html.erb (17.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 582[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 77[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 688[0m
+  Rendered todos/_todo.html.erb (43.0ms)
+  Rendered todos/_collection.html.erb (44.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 821[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 451[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 793[0m
+  Rendered todos/_todo.html.erb (49.1ms)
+  Rendered todos/_collection.html.erb (50.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 587[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 782[0m
+  Rendered todos/_todo.html.erb (35.0ms)
+  Rendered todos/_collection.html.erb (36.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 104[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 602[0m
+  Rendered todos/_todo.html.erb (27.8ms)
+  Rendered todos/_collection.html.erb (29.3ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.5ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 670[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 913[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 397[0m
+  Rendered todos/_todo.html.erb (41.4ms)
+  Rendered todos/_collection.html.erb (42.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 191[0m
+  Rendered todos/_todo.html.erb (13.1ms)
+  Rendered todos/_collection.html.erb (14.6ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.5ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 891[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 944[0m
+  Rendered todos/_todo.html.erb (29.8ms)
+  Rendered todos/_collection.html.erb (31.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 609[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (1.1ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 573[0m
+  Rendered todos/_todo.html.erb (31.7ms)
+  Rendered todos/_collection.html.erb (33.9ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mTodo Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 266 LIMIT 1[0m
+  Rendered todos/_successor.html.erb (7.0ms)
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 11
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 525
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 337
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTodo Exists (0.6ms)[0m  SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 859 LIMIT 1
+  Rendered todos/_successor.html.erb (8.9ms)
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 792[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 289[0m
+  Rendered todos/_todo.html.erb (108.3ms)
+  Rendered todos/_collection.html.erb (110.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 859 LIMIT 1[0m  [["predecessor_id", 859]]
+  Rendered todos/_successor.html.erb (1.8ms)
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 174
+  Rendered todos/_todo.html.erb (18.6ms)
+  Rendered todos/_collection.html.erb (20.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 328
+  Rendered todos/_todo.html.erb (14.5ms)
+  Rendered todos/_collection.html.erb (16.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 951
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 768
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.7ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 162
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 879
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 823
+  Rendered todos/_todo.html.erb (75.8ms)
+  Rendered todos/_collection.html.erb (77.6ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.4ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 946
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.4ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 616
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 580
+  Rendered todos/_todo.html.erb (43.2ms)
+  Rendered todos/_collection.html.erb (44.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 560
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 103
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 423
+  Rendered todos/_todo.html.erb (42.3ms)
+  Rendered todos/_collection.html.erb (43.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 151
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 874
+  Rendered todos/_todo.html.erb (29.1ms)
+  Rendered todos/_collection.html.erb (30.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 189
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 767
+  Rendered todos/_todo.html.erb (27.7ms)
+  Rendered todos/_collection.html.erb (29.8ms)
+  Rendered contexts/_context.html.erb (1961.6ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed') LIMIT 5) subquery_for_count[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed') LIMIT 5) subquery_for_count  [["user_id", 1]]
+  [1m[36mTodo Load (0.2ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed')  ORDER BY todos.completed_at DESC, todos.created_at DESC LIMIT 5[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (394, 269, 48, 11, 273)
+  [1m[36mContext Load (0.1ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (451, 452, 5, 346)[0m
+  [1m[35mTagging Load (0.1ms)[0m  SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (116, 357, 943, 200, 141)
+  [1m[36mTag Load (0.1ms)[0m  [1mSELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 2, 4)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (116, 357, 943, 200, 141)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (116, 357, 943, 200, 141)[0m
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 116
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 357[0m
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 943
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 200[0m
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 141
+  Rendered todos/_todo.html.erb (61.2ms)
+  Rendered todos/_collection.html.erb (91.1ms)
+  [1m[36mContext Load (0.1ms)[0m  [1mSELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 1  [["user_id", 1]]
+  [1m[36mContext Load (0.2ms)[0m  [1mSELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1  ORDER BY position ASC LIMIT 1[0m
+  Rendered todos/_new_todo_form.html.erb (27.6ms)
+  Rendered todos/_new_multi_todo_form.html.erb (3.9ms)
+  Rendered shared/_add_new_item_form.html.erb (39.9ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'[0m  [["user_id", 1]]
+  [1m[35mProject Load (0.7ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'  ORDER BY projects.position ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  [["user_id", 1]]
+  [1m[36mContext Load (0.3ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC[0m
+  Rendered sidebar/sidebar.html.erb (837.9ms)
+  Rendered todos/index.html.erb within layouts/application (2945.0ms)
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND (NOT(state = 'completed')) AND (NOT(default_context_id IS NULL))  ORDER BY projects.position ASC
+  [1m[36mContext Load (0.2ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (5, 9, 1)[0m
+  [1m[35mProject Load (1.0ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND (NOT(state = 'completed')) AND (NOT(default_tags = ''))  ORDER BY projects.position ASC
+  Rendered shared/_navbar.html.erb (10.8ms)
+  Rendered shared/_flash.html.erb (0.8ms)
+  Rendered shared/_footer.html.erb (1.5ms)
+  Rendered layouts/application.html.erb (3959.6ms)
+TodosController.index total_duration=5062.143307 db_time=59.817162999999994 view_runtime=3930.108004951269 query_len=139 query_time=64.07843899999999 query_in_view=0.04924534999999999 render_partial_time=2005.1208229999993 render_template_time=7742.647143
+	query 0.549192 ms, SQL: SELECT `schema_migrations`.* FROM `schema_migrations`
+	query 0.621549 ms, SQL: SELECT  `users`.* FROM `users`  WHERE `users`.`remember_token` = '11fdc1d68ebf726572eb530a0756ea11b735840f'  ORDER BY `users`.`id` ASC LIMIT 1
+	query 0.427587 ms, SQL: BEGIN
+	query 0.643807 ms, SQL: UPDATE `users` SET `remember_token_expires_at` = '2017-04-12 01:51:36' WHERE `users`.`id` = 1
+	query 4.52944 ms, SQL: COMMIT
+	query 0.5364760000000001 ms, SQL: SELECT  `preferences`.* FROM `preferences`  WHERE `preferences`.`user_id` = 1 LIMIT 1
+	query 0.7232109999999999 ms, SQL: SELECT `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (state = 'deferred') AND (show_from <= '2017-03-29 01:51:36')  ORDER BY show_from ASC, todos.created_at DESC
+	query 0.34373 ms, SQL: SELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`project_id`
+	query 0.31146 ms, SQL: SELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`project_id`
+	query 0.32987799999999995 ms, SQL: SELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`context_id`
+	query 0.288929 ms, SQL: SELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`context_id`
+	query 0.34531999999999996 ms, SQL: SELECT COUNT(*) FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))
+	query 1.11165 ms, SQL: SELECT `todos`.* FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))  ORDER BY todos.due IS NULL, todos.due ASC, todos.created_at ASC
+	query 0.43103899999999995 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (156, 48, 152, 113, 280, 341, 365, 180, 305, 435, 436, 429, 321, 351, 432, 67, 454, 272, 77, 125, 408, 355, 128, 388, 186, 167, 346, 413, 201, 195, 308, 70, 348, 417, 335, 342, 259, 64, 392, 324, 91, 107, 147, 121, 414, 352, 278, 55, 22, 340, 83, 360, 336, 54, 290, 15, 197, 427, 122, 382, 401, 75, 279, 104, 332, 270, 171, 261, 258, 310, 354, 339, 8, 266, 127, 159, 405, 192, 175, 331, 196, 84, 257, 397, 409, 137, 378, 9, 315, 269, 296, 273, 118, 37, 112, 316, 303, 314, 385, 358, 329, 63, 423, 27, 312, 94, 129, 130, 106, 151, 68, 333, 393, 24, 114, 361, 52, 424, 18, 419, 407, 193, 61, 103, 16, 47, 370, 50, 62, 26, 74, 169, 123, 445, 134, 390, 268, 191, 5, 41, 97, 120, 149, 380, 262, 431, 109, 277, 452, 144, 297, 29, 441, 126, 89, 23, 403, 411, 307, 292, 96, 448, 356, 328, 363, 132, 199, 362, 20, 65, 40, 286, 446, 449, 284, 157, 95, 434, 87, 80, 443, 387, 264, 35, 12, 347, 338, 188, 190, 153, 313, 131, 294, 161, 166, 327, 142, 69, 287, 38, 263, 116, 45, 260, 11, 302, 422, 343, 119, 288, 440, 304, 274, 450, 344, 7, 101, 359, 447, 25, 265, 98, 350, 311, 353, 456, 78, 14, 404, 189, 184, 148, 379, 183, 79, 177, 364, 57, 51, 421, 36, 317, 319, 291, 451, 200, 176, 73, 433, 6, 133, 395, 21, 66, 337, 298, 1, 396, 357, 71, 13, 369, 430, 31, 415, 300, 44, 138, 30, 194, 165, 76, 43, 271, 154, 39, 374, 85, 389, 53, 381, 276, 115, 182, 46, 442, 139, 366, 283, 178, 299, 376, 164, 33, 285, 179, 110, 172, 281, 3, 406, 59, 371, 93, 330, 275, 145, 373, 187, 325, 349, 383, 399, 158, 155, 34, 293, 426, 181, 377, 102, 418, 368, 2, 185, 32, 88, 455, 391, 437, 124, 60, 416, 143, 400, 108, 402, 301, 384655, 384656, 384657, 1348, 1541)
+	query 0.38026899999999997 ms, SQL: SELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (58, 107, 162, 163, 380, 109, 446, 147, 160, 295, 266, 289, 346, 424, 431, 73, 367, 287, 348, 355, 31, 189, 337, 404, 271, 297, 435, 89, 316, 320, 369, 183, 267, 397, 25, 95, 309, 390, 36, 92, 88, 268, 7, 10, 21, 82, 274, 275, 312, 352, 364, 400, 441, 54, 101, 376, 411, 23, 41, 188, 198, 97, 129, 262, 428, 159, 307, 407, 19, 186, 298, 351, 145, 334, 66, 81, 136, 386, 74, 260, 294, 453, 44, 85, 342, 269, 290, 442, 87, 171, 415, 130, 440, 63, 152, 196, 72, 131, 71, 191, 76, 91, 197, 292, 416, 67, 339, 426, 261, 277, 387, 394, 420, 119, 142, 315, 16, 154, 117, 165, 99, 296, 443, 144, 445, 37, 302, 127, 405, 90, 360, 166, 173, 264, 345, 395, 62, 388, 40, 321, 437, 317, 382, 148, 389, 412, 98, 106, 417, 13, 110, 311, 421, 451, 123, 187, 60, 423, 32, 161, 354, 68, 64, 126, 365, 419, 39, 306, 105, 403, 111, 141, 49, 28, 78, 84, 413, 303, 340, 174, 122, 270, 429, 293, 33, 20, 201, 393, 363, 299, 113, 128, 176, 368, 52, 77, 150, 327, 357, 138, 373, 48, 116, 310, 30, 156, 182, 343, 121, 361, 65, 11, 341, 190, 374, 318, 143, 335, 408, 149, 319, 280, 305, 438, 375, 427, 12, 344, 324, 259, 430, 402, 177, 286, 398, 323, 172, 285, 391, 414, 47, 175, 444, 43, 18, 115, 304, 9, 137, 168, 336, 157, 284, 93, 378, 56, 120, 379, 53, 86, 385, 350, 370, 377, 151, 57, 70, 80, 356, 133, 118, 146, 134, 265, 279, 450, 50, 184, 332, 418, 409, 353, 272, 108, 124, 51, 112, 338, 194, 195, 103, 282, 401, 452, 59, 349, 179, 366, 258, 158, 8, 75, 257, 425, 300, 139, 26, 301, 153, 449, 55, 42, 281, 34, 61, 193, 291, 381, 164, 371, 96, 114, 308, 325, 24, 83, 448, 455, 333, 135, 1)
+	query 0.475973 ms, SQL: SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+	query 0.360384 ms, SQL: SELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 3, 4, 2, 300009, 300010)
+	query 0.38052 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+	query 1.5602960000000001 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+	query 0.482379 ms, SQL: SELECT `recurring_todos`.* FROM `recurring_todos`  WHERE `recurring_todos`.`id` IN (20, 384906)
+	query 0.388399 ms, SQL: SELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 50
+	query 0.607579 ms, SQL: SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+	query 0.325907 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385422
+	query 0.44296199999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385423
+	query 0.993903 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385425
+	query 0.381192 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385424
+	query 0.361832 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385420
+	query 0.41821 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 596
+	query 0.392942 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 381
+	query 0.461655 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 936
+	query 0.389729 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 542
+	query 0.296709 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 911
+	query 0.367865 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 963
+	query 1.176412 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 273
+	query 0.308146 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 128
+	query 0.33544999999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 388
+	query 0.34964399999999995 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 267
+	query 0.35927000000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 957
+	query 0.29325599999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 928
+	query 0.5067929999999999 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 404
+	query 0.402891 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 35
+	query 0.478896 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 857
+	query 0.43938 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 524
+	query 1.198007 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 814
+	query 0.43388299999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 960
+	query 0.406918 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 576
+	query 0.409185 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 120
+	query 0.33572799999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 953
+	query 0.431107 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 555
+	query 0.29113300000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 702
+	query 0.317327 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 611
+	query 0.35293599999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 109
+	query 0.297655 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 883
+	query 0.47998 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 80
+	query 0.40602 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 197
+	query 0.546545 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 531
+	query 0.333722 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 261
+	query 0.375226 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 326
+	query 0.6778240000000001 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820 LIMIT 1
+	query 0.438184 ms, SQL: SELECT `todos`.* FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820
+	query 0.657124 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 909 LIMIT 1
+	query 0.257746 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 85
+	query 0.33899599999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 427
+	query 0.34334699999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 380
+	query 0.315914 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 165
+	query 0.319697 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 64
+	query 0.32230699999999995 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 291
+	query 0.49761399999999995 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 865
+	query 0.297254 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 637
+	query 0.32996000000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 896
+	query 0.355544 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 625
+	query 0.437413 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 804
+	query 0.312789 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 127
+	query 0.33723 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 856
+	query 0.38917599999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 885
+	query 0.300878 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 582
+	query 0.310251 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 77
+	query 0.281382 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 688
+	query 0.40213899999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 821
+	query 0.462641 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 451
+	query 0.281423 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 793
+	query 0.322976 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 587
+	query 0.320048 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 782
+	query 0.325483 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 104
+	query 0.298407 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 602
+	query 0.327122 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 670
+	query 0.330161 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 913
+	query 0.335062 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 397
+	query 0.29813700000000004 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 191
+	query 0.344617 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 891
+	query 0.42602599999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 944
+	query 0.287789 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 609
+	query 1.296737 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 573
+	query 1.17469 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 266 LIMIT 1
+	query 0.46166 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 11
+	query 0.318056 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 525
+	query 0.39713299999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 337
+	query 0.783806 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 859 LIMIT 1
+	query 0.33418899999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 792
+	query 0.47335 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 289
+	query 0.23629799999999998 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 174
+	query 0.291153 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 328
+	query 0.451244 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 951
+	query 0.26811599999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 768
+	query 0.830499 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 162
+	query 0.35557900000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 879
+	query 0.303224 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 823
+	query 0.337908 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 946
+	query 0.561399 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 616
+	query 0.306426 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 580
+	query 0.392229 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 560
+	query 0.275774 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 103
+	query 0.30068100000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 423
+	query 0.274943 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 151
+	query 0.416957 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 874
+	query 0.31607599999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 189
+	query 0.42419799999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 767
+	query 0.265891 ms, SQL: SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed') LIMIT 5) subquery_for_count
+	query 0.29053100000000004 ms, SQL: SELECT  `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed')  ORDER BY todos.completed_at DESC, todos.created_at DESC LIMIT 5
+	query 0.191115 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (394, 269, 48, 11, 273)
+	query 0.20758100000000002 ms, SQL: SELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (451, 452, 5, 346)
+	query 0.189307 ms, SQL: SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (116, 357, 943, 200, 141)
+	query 0.222314 ms, SQL: SELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 2, 4)
+	query 0.23432999999999998 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (116, 357, 943, 200, 141)
+	query 0.26698 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (116, 357, 943, 200, 141)
+	query 0.39869699999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 116
+	query 0.359141 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 357
+	query 0.388699 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 943
+	query 0.460146 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 200
+	query 0.432507 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 141
+	query 0.21479600000000001 ms, SQL: SELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 1
+	query 0.250901 ms, SQL: SELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1  ORDER BY position ASC LIMIT 1
+	query 0.29264999999999997 ms, SQL: SELECT COUNT(*) FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'
+	query 0.861738 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'  ORDER BY projects.position ASC
+	query 0.32393500000000003 ms, SQL: SELECT COUNT(*) FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'
+	query 0.433618 ms, SQL: SELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC
+	query 0.408302 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND (NOT(state = 'completed')) AND (NOT(default_context_id IS NULL))  ORDER BY projects.position ASC
+	query 0.403619 ms, SQL: SELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (5, 9, 1)
+	query 1.1891720000000001 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND (NOT(state = 'completed')) AND (NOT(default_tags = ''))  ORDER BY projects.position ASC
+Completed 200 OK in 5072ms (Views: 3930.1ms | ActiveRecord: 59.8ms)
+
+
+Started GET "/assets/jquery-ui/draggable.css?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/application.css?body=1" for 10.240.0.204 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/resizable.css?body=1" for 10.240.0.187 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/menu.css?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/core.css?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/theme.css?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/button.css?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 10.240.0.207 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 10.240.0.206 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 10.240.1.20 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 10.240.0.206 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 10.240.0.206 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 10.240.0.119 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/core.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/widget.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/position.js?body=1" for 10.240.0.179 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/menu.js?body=1" for 10.240.0.206 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/autocomplete.js?body=1" for 10.240.0.204 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/datepicker.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/button.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/mouse.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/draggable.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/dialog.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/droppable.js?body=1" for 10.240.0.204 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/resizable.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/effect.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/effect-highlight.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/jquery-ui/sortable.js?body=1" for 10.240.0.204 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/tracks.js?body=1" for 10.240.0.69 at 2017-03-29 01:51:41 +0000
+
+
+Started GET "/assets/disable_fx_in_test.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/tracks_pages.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.ui.touch-punch.min.js?body=1" for 10.240.1.17 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.blockUI.js?body=1" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.cookie.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.form.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.jeditable.mini.js?body=1" for 10.240.0.186 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.simulate.drag-sortable.js?body=1" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery.truncator.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/superfish.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/swfobject.js?body=1" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/supersubs.js?body=1" for 10.240.1.19 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/swf_fu.js?body=1" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/application.js?body=1" for 10.240.0.110 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/system-search.png" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/recurring16x16.png" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/blank.png" for 10.240.1.19 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/downarrow.png" for 10.240.0.110 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/grip.png" for 10.240.1.64 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/print.css?body=1" for 10.240.1.32 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/collapse_expand.png" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/edit.png" for 10.240.0.206 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/staricons.png" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/delete.png" for 10.240.1.19 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/defer_1.png" for 10.240.0.206 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/defer_2.png" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/defer_3.png" for 10.240.0.110 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/defer_7.png" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/to_project_off.png" for 10.240.1.19 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/notes_off.png" for 10.240.0.206 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/accept.png" for 10.240.0.182 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/successor_off.png" for 10.240.0.241 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/jquery-ui/ui-bg_flat_75_ffffff_40x100.png" for 10.240.0.204 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/favicon.ico" for 10.240.0.110 at 2017-03-29 01:51:42 +0000
+
+
+Started GET "/assets/notes_on.png" for 10.240.0.110 at 2017-03-29 01:51:51 +0000
+
+
+Started GET "/" for 10.240.0.206 at 2017-03-29 01:54:35 +0000
+Processing by TodosController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mPreference Load (0.1ms)[0m  SELECT  `preferences`.* FROM `preferences`  WHERE `preferences`.`user_id` = 1 LIMIT 1
+  [1m[36mTodo Load (0.5ms)[0m  [1mSELECT `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (state = 'deferred') AND (show_from <= '2017-03-29 01:54:35')  ORDER BY show_from ASC, todos.created_at DESC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`project_id`
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`project_id`[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`context_id`
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`context_id`[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))
+  [1m[36mTodo Load (0.8ms)[0m  [1mSELECT `todos`.* FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))  ORDER BY todos.due IS NULL, todos.due ASC, todos.created_at ASC[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (156, 48, 152, 113, 280, 341, 365, 180, 305, 435, 436, 429, 321, 351, 432, 67, 454, 272, 77, 125, 408, 355, 128, 388, 186, 167, 346, 413, 201, 195, 308, 70, 348, 417, 335, 342, 259, 64, 392, 324, 91, 107, 147, 121, 414, 352, 278, 55, 22, 340, 83, 360, 336, 54, 290, 15, 197, 427, 122, 382, 401, 75, 279, 104, 332, 270, 171, 261, 258, 310, 354, 339, 8, 266, 127, 159, 405, 192, 175, 331, 196, 84, 257, 397, 409, 137, 378, 9, 315, 269, 296, 273, 118, 37, 112, 316, 303, 314, 385, 358, 329, 63, 423, 27, 312, 94, 129, 130, 106, 151, 68, 333, 393, 24, 114, 361, 52, 424, 18, 419, 407, 193, 61, 103, 16, 47, 370, 50, 62, 26, 74, 169, 123, 445, 134, 390, 268, 191, 5, 41, 97, 120, 149, 380, 262, 431, 109, 277, 452, 144, 297, 29, 441, 126, 89, 23, 403, 411, 307, 292, 96, 448, 356, 328, 363, 132, 199, 362, 20, 65, 40, 286, 446, 449, 284, 157, 95, 434, 87, 80, 443, 387, 264, 35, 12, 347, 338, 188, 190, 153, 313, 131, 294, 161, 166, 327, 142, 69, 287, 38, 263, 116, 45, 260, 11, 302, 422, 343, 119, 288, 440, 304, 274, 450, 344, 7, 101, 359, 447, 25, 265, 98, 350, 311, 353, 456, 78, 14, 404, 189, 184, 148, 379, 183, 79, 177, 364, 57, 51, 421, 36, 317, 319, 291, 451, 200, 176, 73, 433, 6, 133, 395, 21, 66, 337, 298, 1, 396, 357, 71, 13, 369, 430, 31, 415, 300, 44, 138, 30, 194, 165, 76, 43, 271, 154, 39, 374, 85, 389, 53, 381, 276, 115, 182, 46, 442, 139, 366, 283, 178, 299, 376, 164, 33, 285, 179, 110, 172, 281, 3, 406, 59, 371, 93, 330, 275, 145, 373, 187, 325, 349, 383, 399, 158, 155, 34, 293, 426, 181, 377, 102, 418, 368, 2, 185, 32, 88, 455, 391, 437, 124, 60, 416, 143, 400, 108, 402, 301, 384655, 384656, 384657, 1348, 1541)
+  [1m[36mContext Load (0.3ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (58, 107, 162, 163, 380, 109, 446, 147, 160, 295, 266, 289, 346, 424, 431, 73, 367, 287, 348, 355, 31, 189, 337, 404, 271, 297, 435, 89, 316, 320, 369, 183, 267, 397, 25, 95, 309, 390, 36, 92, 88, 268, 7, 10, 21, 82, 274, 275, 312, 352, 364, 400, 441, 54, 101, 376, 411, 23, 41, 188, 198, 97, 129, 262, 428, 159, 307, 407, 19, 186, 298, 351, 145, 334, 66, 81, 136, 386, 74, 260, 294, 453, 44, 85, 342, 269, 290, 442, 87, 171, 415, 130, 440, 63, 152, 196, 72, 131, 71, 191, 76, 91, 197, 292, 416, 67, 339, 426, 261, 277, 387, 394, 420, 119, 142, 315, 16, 154, 117, 165, 99, 296, 443, 144, 445, 37, 302, 127, 405, 90, 360, 166, 173, 264, 345, 395, 62, 388, 40, 321, 437, 317, 382, 148, 389, 412, 98, 106, 417, 13, 110, 311, 421, 451, 123, 187, 60, 423, 32, 161, 354, 68, 64, 126, 365, 419, 39, 306, 105, 403, 111, 141, 49, 28, 78, 84, 413, 303, 340, 174, 122, 270, 429, 293, 33, 20, 201, 393, 363, 299, 113, 128, 176, 368, 52, 77, 150, 327, 357, 138, 373, 48, 116, 310, 30, 156, 182, 343, 121, 361, 65, 11, 341, 190, 374, 318, 143, 335, 408, 149, 319, 280, 305, 438, 375, 427, 12, 344, 324, 259, 430, 402, 177, 286, 398, 323, 172, 285, 391, 414, 47, 175, 444, 43, 18, 115, 304, 9, 137, 168, 336, 157, 284, 93, 378, 56, 120, 379, 53, 86, 385, 350, 370, 377, 151, 57, 70, 80, 356, 133, 118, 146, 134, 265, 279, 450, 50, 184, 332, 418, 409, 353, 272, 108, 124, 51, 112, 338, 194, 195, 103, 282, 401, 452, 59, 349, 179, 366, 258, 158, 8, 75, 257, 425, 300, 139, 26, 301, 153, 449, 55, 42, 281, 34, 61, 193, 291, 381, 164, 371, 96, 114, 308, 325, 24, 83, 448, 455, 333, 135, 1)[0m
+  [1m[35mTagging Load (0.4ms)[0m  SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 3, 4, 2, 300009, 300010)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+  [1m[36mSQL (1.1ms)[0m  [1mSELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)[0m
+  [1m[35mRecurringTodo Load (0.2ms)[0m  SELECT `recurring_todos`.* FROM `recurring_todos`  WHERE `recurring_todos`.`id` IN (20, 384906)
+  [1m[36mContext Load (0.2ms)[0m  [1mSELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 50[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385422[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385423[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385425[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385424[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.1ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385420
+  Rendered todos/_todo.html.erb (65.9ms)
+  Rendered todos/_collection.html.erb (67.3ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.4ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.1ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.1ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.1ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 596
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 381
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 936
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 542
+  Rendered todos/_todo.html.erb (81.0ms)
+  Rendered todos/_collection.html.erb (82.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 911
+  Rendered todos/_todo.html.erb (12.7ms)
+  Rendered todos/_collection.html.erb (13.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 963
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 273
+  Rendered todos/_todo.html.erb (23.1ms)
+  Rendered todos/_collection.html.erb (24.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 128
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 388
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.1ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 267
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 957
+  Rendered todos/_todo.html.erb (48.6ms)
+  Rendered todos/_collection.html.erb (49.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.5ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 928
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 404
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 35
+  Rendered todos/_todo.html.erb (36.3ms)
+  Rendered todos/_collection.html.erb (37.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 857
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 524
+  Rendered todos/_todo.html.erb (23.8ms)
+  Rendered todos/_collection.html.erb (25.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 814
+  Rendered todos/_todo.html.erb (11.7ms)
+  Rendered todos/_collection.html.erb (13.0ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.2ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 960
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 576
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 120
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 953
+  Rendered todos/_todo.html.erb (49.5ms)
+  Rendered todos/_collection.html.erb (50.7ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 555
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 702
+  Rendered todos/_todo.html.erb (25.7ms)
+  Rendered todos/_collection.html.erb (26.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 611
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 109
+  Rendered todos/_todo.html.erb (23.5ms)
+  Rendered todos/_collection.html.erb (24.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 883
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 80
+  Rendered todos/_todo.html.erb (25.6ms)
+  Rendered todos/_collection.html.erb (27.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 197
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 531
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 261
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 326
+  Rendered todos/_todo.html.erb (53.3ms)
+  Rendered todos/_collection.html.erb (54.8ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTodo Exists (0.2ms)[0m  SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820 LIMIT 1
+  [1m[36mTodo Load (0.2ms)[0m  [1mSELECT `todos`.* FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820[0m
+  [1m[35mTodo Exists (0.2ms)[0m  SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 909 LIMIT 1
+  Rendered todos/_successor.html.erb (3.9ms)
+  Rendered todos/_successor.html.erb (11.1ms)
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 85[0m
+  Rendered todos/_todo.html.erb (30.0ms)
+  Rendered todos/_collection.html.erb (31.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 427[0m
+  Rendered todos/_todo.html.erb (13.9ms)
+  Rendered todos/_collection.html.erb (15.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 380[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.4ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 165[0m
+  Rendered todos/_todo.html.erb (27.5ms)
+  Rendered todos/_collection.html.erb (29.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 64[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 291[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 865[0m
+  Rendered todos/_todo.html.erb (39.8ms)
+  Rendered todos/_collection.html.erb (41.3ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.5ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 637[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 896[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 625[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 804[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 127[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 856[0m
+  Rendered todos/_todo.html.erb (89.8ms)
+  Rendered todos/_collection.html.erb (91.2ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 885[0m
+  Rendered todos/_todo.html.erb (25.4ms)
+  Rendered todos/_collection.html.erb (26.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 582[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 77[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 688[0m
+  Rendered todos/_todo.html.erb (43.6ms)
+  Rendered todos/_collection.html.erb (45.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 821[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 451[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 793[0m
+  Rendered todos/_todo.html.erb (46.6ms)
+  Rendered todos/_collection.html.erb (48.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 587[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 782[0m
+  Rendered todos/_todo.html.erb (30.4ms)
+  Rendered todos/_collection.html.erb (31.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 104[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 602[0m
+  Rendered todos/_todo.html.erb (26.7ms)
+  Rendered todos/_collection.html.erb (28.4ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 670[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 913[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 397[0m
+  Rendered todos/_todo.html.erb (40.5ms)
+  Rendered todos/_collection.html.erb (42.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 191[0m
+  Rendered todos/_todo.html.erb (12.9ms)
+  Rendered todos/_collection.html.erb (14.5ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 891[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.1ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 944[0m
+  Rendered todos/_todo.html.erb (26.3ms)
+  Rendered todos/_collection.html.erb (27.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 609[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 573[0m
+  Rendered todos/_todo.html.erb (27.1ms)
+  Rendered todos/_collection.html.erb (28.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mTodo Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 266 LIMIT 1[0m
+  Rendered todos/_successor.html.erb (3.4ms)
+  [1m[35mAttachment Load (0.1ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 11
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 525
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 337
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTodo Exists (0.2ms)[0m  SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 859 LIMIT 1
+  Rendered todos/_successor.html.erb (3.5ms)
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 792[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 289[0m
+  Rendered todos/_todo.html.erb (75.7ms)
+  Rendered todos/_collection.html.erb (77.2ms)
+  [1m[35mCACHE (0.1ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 859 LIMIT 1[0m  [["predecessor_id", 859]]
+  Rendered todos/_successor.html.erb (1.7ms)
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 174
+  Rendered todos/_todo.html.erb (16.8ms)
+  Rendered todos/_collection.html.erb (18.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 328
+  Rendered todos/_todo.html.erb (14.0ms)
+  Rendered todos/_collection.html.erb (15.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 951
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 768
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.1ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 162
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 879
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 823
+  Rendered todos/_todo.html.erb (71.6ms)
+  Rendered todos/_collection.html.erb (73.1ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.7ms)
+  Rendered todos/_todo.html.erb (0.0ms)
+  Rendered todos/_collection.html.erb (1.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 946
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 616
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 580
+  Rendered todos/_todo.html.erb (45.4ms)
+  Rendered todos/_collection.html.erb (46.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 560
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 103
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 423
+  Rendered todos/_todo.html.erb (44.1ms)
+  Rendered todos/_collection.html.erb (45.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 151
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.1ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 874
+  Rendered todos/_todo.html.erb (31.1ms)
+  Rendered todos/_collection.html.erb (33.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 189
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 767
+  Rendered todos/_todo.html.erb (38.1ms)
+  Rendered todos/_collection.html.erb (40.0ms)
+  Rendered contexts/_context.html.erb (1474.6ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed') LIMIT 5) subquery_for_count[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed') LIMIT 5) subquery_for_count  [["user_id", 1]]
+  [1m[36mTodo Load (0.1ms)[0m  [1mSELECT  `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed')  ORDER BY todos.completed_at DESC, todos.created_at DESC LIMIT 5[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (394, 269, 48, 11, 273)
+  [1m[36mContext Load (0.3ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (451, 452, 5, 346)[0m
+  [1m[35mTagging Load (0.3ms)[0m  SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (116, 357, 943, 200, 141)
+  [1m[36mTag Load (0.6ms)[0m  [1mSELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 2, 4)[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (116, 357, 943, 200, 141)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (116, 357, 943, 200, 141)[0m
+  [1m[35mAttachment Load (0.3ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 116
+  [1m[36mAttachment Load (0.2ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 357[0m
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 943
+  [1m[36mAttachment Load (0.3ms)[0m  [1mSELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 200[0m
+  [1m[35mAttachment Load (0.2ms)[0m  SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 141
+  Rendered todos/_todo.html.erb (64.8ms)
+  Rendered todos/_collection.html.erb (100.5ms)
+  [1m[36mContext Load (0.3ms)[0m  [1mSELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 1  [["user_id", 1]]
+  [1m[36mContext Load (0.1ms)[0m  [1mSELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1  ORDER BY position ASC LIMIT 1[0m
+  Rendered todos/_new_todo_form.html.erb (3.6ms)
+  Rendered todos/_new_multi_todo_form.html.erb (1.4ms)
+  Rendered shared/_add_new_item_form.html.erb (12.7ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'[0m  [["user_id", 1]]
+  [1m[35mProject Load (0.6ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND `projects`.`state` = 'active'  ORDER BY projects.position ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  [["user_id", 1]]
+  [1m[36mContext Load (0.3ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC[0m
+  Rendered sidebar/sidebar.html.erb (785.1ms)
+  Rendered todos/index.html.erb within layouts/application (2380.2ms)
+  [1m[35mProject Load (0.2ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND (NOT(state = 'completed')) AND (NOT(default_context_id IS NULL))  ORDER BY projects.position ASC
+  [1m[36mContext Load (0.2ms)[0m  [1mSELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (5, 9, 1)[0m
+  [1m[35mProject Load (0.8ms)[0m  SELECT `projects`.* FROM `projects`  WHERE `projects`.`user_id` = 1 AND (NOT(state = 'completed')) AND (NOT(default_tags = ''))  ORDER BY projects.position ASC
+  Rendered shared/_navbar.html.erb (5.5ms)
+  Rendered shared/_flash.html.erb (0.2ms)
+  Rendered shared/_footer.html.erb (0.6ms)
+  Rendered layouts/application.html.erb (2848.9ms)
+TodosController.index total_duration=3494.071896 db_time=34.043016 view_runtime=2821.7908139362867 query_len=135 query_time=47.239724 query_in_view=0.04033612799999999 render_partial_time=1495.4387139999997 render_template_time=6014.451602
+	query 0.288902 ms, SQL: SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+	query 0.171504 ms, SQL: SELECT  `preferences`.* FROM `preferences`  WHERE `preferences`.`user_id` = 1 LIMIT 1
+	query 0.613327 ms, SQL: SELECT `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (state = 'deferred') AND (show_from <= '2017-03-29 01:54:35')  ORDER BY show_from ASC, todos.created_at DESC
+	query 0.21556 ms, SQL: SELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`project_id`
+	query 0.267459 ms, SQL: SELECT COUNT(*) AS count_all, project_id AS project_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`project_id`
+	query 0.290489 ms, SQL: SELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden')) GROUP BY `todos`.`context_id`
+	query 0.24371700000000002 ms, SQL: SELECT COUNT(*) AS count_all, context_id AS context_id FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'deferred') GROUP BY `todos`.`context_id`
+	query 0.176536 ms, SQL: SELECT COUNT(*) FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))
+	query 0.924168 ms, SQL: SELECT `todos`.* FROM `todos` INNER JOIN contexts c ON c.id = todos.context_id LEFT OUTER JOIN projects p ON p.id = todos.project_id WHERE `todos`.`user_id` = 1 AND `todos`.`state` = 'active' AND (NOT(c.state = 'hidden')) AND (p.id IS NULL OR NOT(p.state = 'hidden'))  ORDER BY todos.due IS NULL, todos.due ASC, todos.created_at ASC
+	query 0.532655 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (156, 48, 152, 113, 280, 341, 365, 180, 305, 435, 436, 429, 321, 351, 432, 67, 454, 272, 77, 125, 408, 355, 128, 388, 186, 167, 346, 413, 201, 195, 308, 70, 348, 417, 335, 342, 259, 64, 392, 324, 91, 107, 147, 121, 414, 352, 278, 55, 22, 340, 83, 360, 336, 54, 290, 15, 197, 427, 122, 382, 401, 75, 279, 104, 332, 270, 171, 261, 258, 310, 354, 339, 8, 266, 127, 159, 405, 192, 175, 331, 196, 84, 257, 397, 409, 137, 378, 9, 315, 269, 296, 273, 118, 37, 112, 316, 303, 314, 385, 358, 329, 63, 423, 27, 312, 94, 129, 130, 106, 151, 68, 333, 393, 24, 114, 361, 52, 424, 18, 419, 407, 193, 61, 103, 16, 47, 370, 50, 62, 26, 74, 169, 123, 445, 134, 390, 268, 191, 5, 41, 97, 120, 149, 380, 262, 431, 109, 277, 452, 144, 297, 29, 441, 126, 89, 23, 403, 411, 307, 292, 96, 448, 356, 328, 363, 132, 199, 362, 20, 65, 40, 286, 446, 449, 284, 157, 95, 434, 87, 80, 443, 387, 264, 35, 12, 347, 338, 188, 190, 153, 313, 131, 294, 161, 166, 327, 142, 69, 287, 38, 263, 116, 45, 260, 11, 302, 422, 343, 119, 288, 440, 304, 274, 450, 344, 7, 101, 359, 447, 25, 265, 98, 350, 311, 353, 456, 78, 14, 404, 189, 184, 148, 379, 183, 79, 177, 364, 57, 51, 421, 36, 317, 319, 291, 451, 200, 176, 73, 433, 6, 133, 395, 21, 66, 337, 298, 1, 396, 357, 71, 13, 369, 430, 31, 415, 300, 44, 138, 30, 194, 165, 76, 43, 271, 154, 39, 374, 85, 389, 53, 381, 276, 115, 182, 46, 442, 139, 366, 283, 178, 299, 376, 164, 33, 285, 179, 110, 172, 281, 3, 406, 59, 371, 93, 330, 275, 145, 373, 187, 325, 349, 383, 399, 158, 155, 34, 293, 426, 181, 377, 102, 418, 368, 2, 185, 32, 88, 455, 391, 437, 124, 60, 416, 143, 400, 108, 402, 301, 384655, 384656, 384657, 1348, 1541)
+	query 0.40485899999999997 ms, SQL: SELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (58, 107, 162, 163, 380, 109, 446, 147, 160, 295, 266, 289, 346, 424, 431, 73, 367, 287, 348, 355, 31, 189, 337, 404, 271, 297, 435, 89, 316, 320, 369, 183, 267, 397, 25, 95, 309, 390, 36, 92, 88, 268, 7, 10, 21, 82, 274, 275, 312, 352, 364, 400, 441, 54, 101, 376, 411, 23, 41, 188, 198, 97, 129, 262, 428, 159, 307, 407, 19, 186, 298, 351, 145, 334, 66, 81, 136, 386, 74, 260, 294, 453, 44, 85, 342, 269, 290, 442, 87, 171, 415, 130, 440, 63, 152, 196, 72, 131, 71, 191, 76, 91, 197, 292, 416, 67, 339, 426, 261, 277, 387, 394, 420, 119, 142, 315, 16, 154, 117, 165, 99, 296, 443, 144, 445, 37, 302, 127, 405, 90, 360, 166, 173, 264, 345, 395, 62, 388, 40, 321, 437, 317, 382, 148, 389, 412, 98, 106, 417, 13, 110, 311, 421, 451, 123, 187, 60, 423, 32, 161, 354, 68, 64, 126, 365, 419, 39, 306, 105, 403, 111, 141, 49, 28, 78, 84, 413, 303, 340, 174, 122, 270, 429, 293, 33, 20, 201, 393, 363, 299, 113, 128, 176, 368, 52, 77, 150, 327, 357, 138, 373, 48, 116, 310, 30, 156, 182, 343, 121, 361, 65, 11, 341, 190, 374, 318, 143, 335, 408, 149, 319, 280, 305, 438, 375, 427, 12, 344, 324, 259, 430, 402, 177, 286, 398, 323, 172, 285, 391, 414, 47, 175, 444, 43, 18, 115, 304, 9, 137, 168, 336, 157, 284, 93, 378, 56, 120, 379, 53, 86, 385, 350, 370, 377, 151, 57, 70, 80, 356, 133, 118, 146, 134, 265, 279, 450, 50, 184, 332, 418, 409, 353, 272, 108, 124, 51, 112, 338, 194, 195, 103, 282, 401, 452, 59, 349, 179, 366, 258, 158, 8, 75, 257, 425, 300, 139, 26, 301, 153, 449, 55, 42, 281, 34, 61, 193, 291, 381, 164, 371, 96, 114, 308, 325, 24, 83, 448, 455, 333, 135, 1)
+	query 0.5435490000000001 ms, SQL: SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+	query 0.286725 ms, SQL: SELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 3, 4, 2, 300009, 300010)
+	query 0.392148 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+	query 1.253082 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`predecessor_id` WHERE (NOT (todos.state = 'completed')) AND `dependencies`.`successor_id` IN (385417, 385418, 164, 49, 30, 420, 330, 635, 550, 696, 931, 870, 912, 818, 806, 50, 152, 443, 315, 453, 582, 835, 918, 175, 432, 339, 371, 683, 876, 831, 802, 795, 148, 90, 199, 380, 329, 415, 264, 414, 670, 538, 920, 817, 596, 128, 197, 15, 111, 171, 39, 45, 284, 368, 588, 571, 935, 942, 884, 784, 85, 11, 134, 390, 868, 929, 923, 826, 966, 147, 98, 61, 611, 556, 617, 952, 895, 198, 311, 558, 700, 530, 901, 58, 78, 303, 352, 951, 849, 848, 101, 447, 449, 341, 525, 620, 825, 945, 917, 139, 60, 441, 295, 656, 600, 544, 136, 2, 345, 639, 650, 539, 779, 789, 172, 181, 298, 455, 387, 294, 359, 293, 325, 549, 669, 662, 850, 83, 79, 27, 278, 367, 454, 651, 522, 547, 960, 940, 961, 320, 531, 546, 906, 858, 113, 187, 92, 334, 396, 407, 922, 787, 191, 84, 188, 323, 321, 710, 671, 788, 872, 898, 780, 109, 28, 20, 366, 276, 609, 543, 528, 583, 810, 774, 809, 853, 805, 107, 193, 132, 790, 871, 794, 824, 82, 306, 281, 416, 814, 919, 822, 838, 834, 87, 274, 358, 673, 684, 597, 821, 159, 129, 76, 348, 694, 518, 535, 634, 561, 891, 890, 777, 3, 25, 389, 672, 584, 697, 785, 836, 151, 388, 637, 640, 660, 705, 896, 878, 194, 431, 698, 768, 875, 954, 902, 89, 86, 65, 386, 268, 286, 587, 883, 863, 830, 140, 182, 7, 434, 791, 860, 864, 179, 391, 624, 678, 692, 937, 965, 180, 435, 301, 704, 541, 773, 160, 122, 369, 560, 593, 643, 659, 885, 183, 450, 378, 287, 283, 559, 567, 675, 803, 778, 941, 176, 48, 123, 17, 285, 599, 513, 928, 847, 146, 142, 22, 333, 623, 545, 590, 646, 282, 310, 297, 711, 685, 552, 782, 43, 395, 628, 54, 121, 32, 44, 421, 365, 425, 418, 346, 666, 677, 512, 910, 851, 4, 68, 307, 534, 657, 690, 554, 618, 857, 769, 882, 886, 144, 314, 649, 514, 517, 653, 913, 786, 772, 841, 771, 9, 91, 302, 576, 614, 112, 451, 625, 520, 658, 706, 776, 915, 959, 63, 149, 412, 436, 353, 361, 615, 946, 852, 904, 120, 95, 177, 168, 642, 686, 827, 892, 930, 150, 328, 280, 360, 555, 644, 703, 568, 963, 770, 843, 925, 270, 405, 400, 916, 93, 40, 364, 403, 300, 304, 564, 577, 839, 903, 72, 36, 81, 125, 38, 324, 392, 292, 608, 601, 647, 953, 804, 828, 964, 862, 110, 195, 145, 271, 413, 257, 668, 621, 589, 837, 956, 955, 100, 108, 117, 422, 610, 899, 102, 41, 701, 536, 629, 655, 654, 880, 106, 6, 354, 578, 557, 888, 939, 165, 169, 8, 337, 648, 515, 598, 921, 907, 861, 16, 190, 404, 448, 709, 566, 681, 914, 938, 35, 24, 674, 526, 633, 652, 189, 12, 70, 96, 259, 299, 581, 595, 897, 889, 138, 69, 607, 699, 553, 800, 893, 808, 161, 408, 335, 385, 316, 519, 793, 792, 842, 429, 676, 630, 887, 815, 74, 57, 349, 327, 409, 527, 572, 874, 775, 167, 115, 262, 394, 456, 430, 575, 908, 812, 178, 37, 296, 279, 682, 708, 127, 42, 154, 372, 444, 410, 382, 277, 376, 309, 533, 869, 663, 947, 934, 933, 796, 273, 350, 363, 565, 563, 529, 832, 845, 799, 855, 162, 26, 263, 426, 275, 537, 605, 585, 523, 879, 829, 156, 438, 379, 319, 948, 911, 18, 124, 399, 411, 767, 950, 783, 381, 313, 355, 680, 594, 936, 894, 949, 866, 62, 258, 424, 667, 540, 64, 67, 34, 260, 398, 573, 645, 801, 192, 99, 437, 622, 707, 23, 88, 397, 370, 856, 877, 854, 962, 174, 31, 10, 261, 347, 338, 702, 616, 521, 574, 14, 305, 383, 342, 580, 532, 926, 80, 77, 104, 170, 289, 322, 331, 336, 636, 819, 135, 19, 196, 433, 661, 631, 548, 798, 811, 166, 158, 75, 318, 591, 638, 813, 33, 46, 326, 269, 442, 569, 641, 94, 185, 373, 340, 665, 55, 137, 439, 604, 579, 944, 927, 131, 53, 201, 375, 452, 272, 440, 542, 679, 613, 612, 823, 807, 840, 114, 59, 291, 344, 377, 351, 401, 627, 695, 816, 900, 103, 173, 155, 143, 427, 428, 362, 446, 393, 881, 97, 66, 51, 47, 13, 73, 118, 402, 290, 419, 602, 551, 958, 797, 186, 356, 516, 603, 846, 445, 332, 265, 689, 586, 592, 562, 691, 873, 184, 423, 312, 688, 664, 570, 865, 924, 844, 21, 130, 267, 374, 384, 619, 905, 524, 385422, 385423, 385425, 385424, 957, 385420)
+	query 0.29891599999999996 ms, SQL: SELECT `recurring_todos`.* FROM `recurring_todos`  WHERE `recurring_todos`.`id` IN (20, 384906)
+	query 0.30184 ms, SQL: SELECT  `contexts`.* FROM `contexts`  WHERE `contexts`.`user_id` = 1 AND `contexts`.`state` = 'active'  ORDER BY position ASC LIMIT 50
+	query 0.322519 ms, SQL: SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+	query 0.320053 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385422
+	query 0.311743 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385423
+	query 0.298716 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385425
+	query 0.259281 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385424
+	query 0.234793 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 385420
+	query 0.25227700000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 596
+	query 0.32023 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 381
+	query 0.257176 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 936
+	query 0.269357 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 542
+	query 0.292602 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 911
+	query 0.275086 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 963
+	query 0.255763 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 273
+	query 0.259813 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 128
+	query 0.262617 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 388
+	query 0.238529 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 267
+	query 0.324883 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 957
+	query 0.657792 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 928
+	query 0.275778 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 404
+	query 0.25793099999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 35
+	query 0.262982 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 857
+	query 0.267878 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 524
+	query 0.233938 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 814
+	query 0.296729 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 960
+	query 0.305906 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 576
+	query 0.326417 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 120
+	query 0.294694 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 953
+	query 0.28903700000000004 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 555
+	query 0.298109 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 702
+	query 0.290881 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 611
+	query 0.362822 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 109
+	query 0.31556 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 883
+	query 0.315069 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 80
+	query 0.312666 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 197
+	query 0.393647 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 531
+	query 0.42750699999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 261
+	query 0.357319 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 326
+	query 0.419265 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820 LIMIT 1
+	query 0.263188 ms, SQL: SELECT `todos`.* FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 820
+	query 0.27995899999999996 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 909 LIMIT 1
+	query 0.241649 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 85
+	query 0.34871 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 427
+	query 0.363283 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 380
+	query 0.488266 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 165
+	query 0.34420700000000004 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 64
+	query 0.343703 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 291
+	query 0.427887 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 865
+	query 0.395316 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 637
+	query 0.33884200000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 896
+	query 0.418886 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 625
+	query 0.285235 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 804
+	query 0.29081799999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 127
+	query 0.40727899999999995 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 856
+	query 0.375851 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 885
+	query 0.423668 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 582
+	query 0.423845 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 77
+	query 0.32728 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 688
+	query 0.34148799999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 821
+	query 0.391204 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 451
+	query 0.356615 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 793
+	query 0.366066 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 587
+	query 0.375371 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 782
+	query 0.335325 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 104
+	query 0.293713 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 602
+	query 0.303773 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 670
+	query 0.275148 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 913
+	query 0.272776 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 397
+	query 0.356187 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 191
+	query 0.44028300000000004 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 891
+	query 0.26504700000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 944
+	query 0.350573 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 609
+	query 0.304279 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 573
+	query 0.310361 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 266 LIMIT 1
+	query 0.175885 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 11
+	query 0.300005 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 525
+	query 0.278588 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 337
+	query 0.304274 ms, SQL: SELECT  1 AS one FROM `todos` INNER JOIN `dependencies` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` = 859 LIMIT 1
+	query 0.294094 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 792
+	query 0.277707 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 289
+	query 0.260371 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 174
+	query 0.284068 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 328
+	query 0.389429 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 951
+	query 0.29285900000000004 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 768
+	query 0.260292 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 162
+	query 0.285011 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 879
+	query 0.533957 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 823
+	query 0.36869799999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 946
+	query 0.36441799999999996 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 616
+	query 0.35057099999999997 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 580
+	query 0.36684 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 560
+	query 0.28947100000000003 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 103
+	query 0.384268 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 423
+	query 0.334345 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 151
+	query 0.253853 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 874
+	query 0.34458999999999995 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 189
+	query 0.282165 ms, SQL: SELECT `attachments`.* FROM `attachments`  WHERE `attachments`.`todo_id` = 767
+	query 0.23685 ms, SQL: SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed') LIMIT 5) subquery_for_count
+	query 0.201649 ms, SQL: SELECT  `todos`.* FROM `todos`  WHERE `todos`.`user_id` = 1 AND (todos.state = 'completed')  ORDER BY todos.completed_at DESC, todos.created_at DESC LIMIT 5
+	query 0.23413199999999998 ms, SQL: SELECT `projects`.* FROM `projects`  WHERE `projects`.`id` IN (394, 269, 48, 11, 273)
+	query 0.33546200000000004 ms, SQL: SELECT `contexts`.* FROM `contexts`  WHERE `contexts`.`id` IN (451, 452, 5, 346)
+	query 0.43442600000000003 ms, SQL: SELECT `taggings`.* FROM `taggings`  WHERE `taggings`.`taggable_type` = 'Todo' AND `taggings`.`taggable_id` IN (116, 357, 943, 200, 141)
+	query 0.763695 ms, SQL: SELECT `tags`.* FROM `tags`  WHERE `tags`.`id` IN (1, 2, 4)
+	query 0.49878300000000003 ms, SQL: SELECT `dependencies`.*, `dependencies`.`id` AS t0_r0, `dependencies`.`successor_id` AS t0_r1, `dependencies`.`predecessor_id` AS t0_r2, `dependencies`.`relationship_type` AS t0_r3, `todos`.`id` AS t1_r0, `todos`.`context_id` AS t1_r1, `todos`.`project_id` AS t1_r2, `todos`.`description` AS t1_r3, `todos`.`notes` AS t1_r4, `todos`.`created_at` AS t1_r5, `todos`.`due` AS t1_r6, `todos`.`completed_at` AS t1_r7, `todos`.`user_id` AS t1_r8, `todos`.`show_from` AS t1_r9, `todos`.`state` AS t1_r10, `todos`.`recurring_todo_id` AS t1_r11, `todos`.`updated_at` AS t1_r12 FROM `dependencies` LEFT OUTER JOIN `todos` ON `todos`.`id` = `dependencies`.`successor_id` WHERE (todos.state = 'pending') AND `dependencies`.`predecessor_id` IN (116, 357, 943, 200, 141)

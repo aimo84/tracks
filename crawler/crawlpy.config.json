@@ -1,0 +1,28 @@
+{
+	"proto": "http",
+	"domain": "redmine-jwyoung.c9users.io:8080",
+	"depth": 3,
+	"ignores": [
+	
+	],
+	"httpstatus_list": [],
+	"login": {
+		"enabled": false,
+		"method": "post",
+		"action": "",
+		"failure": "Password is incorrect",
+		"fields": {
+			"username": "admin",
+			"password": "password"
+		},
+		"csrf": {
+			"enabled": false,
+			"field": "csrf"
+		}
+
+	},
+	"store": {
+		"enabled": false,
+		"path": "./data"
+	}
+}
